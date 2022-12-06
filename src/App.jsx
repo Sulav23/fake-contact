@@ -9,6 +9,7 @@ const App = () => {
   const [newData, setNewData] = useState("");
   const [editFormInput, setEditFormInput] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,8 +17,10 @@ const App = () => {
         const res = await fetch(
           "https://638ef4d34ddca317d7ea4b6b.mockapi.io/contact/contact"
         );
+        setIsLoading(true);
         const data = await res.json();
         setContactList(data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -45,9 +48,10 @@ const App = () => {
       "https://638ef4d34ddca317d7ea4b6b.mockapi.io/contact/contact",
       config
     );
+    setIsLoading(true);
     const result = await res.json();
     setNewData(result);
-
+    setIsLoading(false);
     clearFormData(data);
   };
 
@@ -64,9 +68,10 @@ const App = () => {
       `https://638ef4d34ddca317d7ea4b6b.mockapi.io/contact/contact/${editFormInput.id}`,
       config
     );
+    setIsLoading(true);
     const result = await res.json();
-
     setNewData(result);
+    setIsLoading(false);
     clearFormData(data);
     setIsEditing(false);
   };
@@ -95,6 +100,10 @@ const App = () => {
 
     setNewData(result);
   };
+
+  if (!isLoading) {
+    <h1>Loading ...</h1>;
+  }
 
   return (
     <>

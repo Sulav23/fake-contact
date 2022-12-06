@@ -13,7 +13,13 @@ const ConatctInfo = ({ handleSubmit, isEditing, editFormInput }) => {
       onSubmit={handleSubmit}
       initialValues={editFormInput}
       render={(formRenderProps) => (
-        <FormElement>
+        <FormElement
+          style={{
+            width: "80vw",
+            margin: "40px auto",
+            padding: "10px",
+          }}
+        >
           <Field
             label="Name"
             name="name"
@@ -26,7 +32,11 @@ const ConatctInfo = ({ handleSubmit, isEditing, editFormInput }) => {
             component={Input}
             validator={requiredVaildator}
           />
-          <Button themeColor={"primary"} type={"submit"}>
+          <Button
+            themeColor={"primary"}
+            type={"submit"}
+            style={{ margin: "10px" }}
+          >
             {!isEditing ? "Add" : "Edit"}
           </Button>
         </FormElement>
