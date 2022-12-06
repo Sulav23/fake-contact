@@ -43,16 +43,16 @@ const App = () => {
       },
       body: JSON.stringify(data),
     };
+    setIsLoading(true);
 
     const res = await fetch(
       "https://638ef4d34ddca317d7ea4b6b.mockapi.io/contact/contact",
       config
     );
-    setIsLoading(true);
     const result = await res.json();
     setNewData(result);
-    setIsLoading(false);
     clearFormData(data);
+    setIsLoading(false);
   };
 
   const editData = async (data) => {
@@ -64,16 +64,16 @@ const App = () => {
       },
       body: JSON.stringify(data),
     };
+    setIsLoading(true);
     const res = await fetch(
       `https://638ef4d34ddca317d7ea4b6b.mockapi.io/contact/contact/${editFormInput.id}`,
       config
     );
-    setIsLoading(true);
     const result = await res.json();
     setNewData(result);
-    setIsLoading(false);
     clearFormData(data);
     setIsEditing(false);
+    setIsLoading(false);
   };
 
   const handleSubmit = (data) => {
@@ -87,9 +87,11 @@ const App = () => {
   const handleEdit = (item) => {
     setEditFormInput(item);
     setIsEditing(true);
+    console.log(editFormInput);
   };
 
   const handleDelete = async (id) => {
+    setIsLoading(true);
     const res = await fetch(
       `https://638ef4d34ddca317d7ea4b6b.mockapi.io/contact/contact/${id}`,
       {
@@ -97,30 +99,25 @@ const App = () => {
       }
     );
     const result = await res.json();
-
     setNewData(result);
+    setIsEditing(false);
+    setIsLoading(false);
   };
-
-  if (!isLoading) {
-    <h1>Loading ...</h1>;
-  }
 
   return (
     <>
       <Navbar />
-      <ConatctInfo
-        handleSubmit={handleSubmit}
-        isEditing={isEditing}
-        editFormInput={editFormInput}
-      />
-      {contactList.length > 0 ? (
+      <ConatctInfo handleSubmit={handleSubmit} isEditing={isEditing} />
+      {isLoading ? (
+        <h1 style={{ textAlign: "center", marginTop: "50px" }}>Loading ...</h1>
+      ) : contactList.length > 0 ? (
         <Contacts
           contactList={contactList}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
         />
       ) : (
-        <h1>No contact to show</h1>
+        <h1 style={{ textAlign: "center" }}>No contact to show</h1>
       )}
     </>
   );
