@@ -1,0 +1,26 @@
+{
+  "name": "fake-contact",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@progress/kendo-react-buttons": "^5.9.0",
+    "@progress/kendo-react-form": "^5.9.0",
+    "@progress/kendo-react-inputs": "^5.9.0",
+    "@progress/kendo-react-layout": "^5.7.0-dev.202209121340",
+    "@progress/kendo-theme-bootstrap": "^5.12.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "vite": "^3.2.3"
+  }
+}
