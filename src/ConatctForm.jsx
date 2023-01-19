@@ -3,15 +3,16 @@ import { Form, Field, FormElement } from "@progress/kendo-react-form";
 import { Input } from "@progress/kendo-react-inputs";
 import { Button } from "@progress/kendo-react-buttons";
 
-const ConatctInfo = ({ handleSubmit, isEditing, initialValue }) => {
+const ConatctForm = ({ handleSubmit, isEditing, initialValue }) => {
   const requiredVaildator = (value) => {
     return value ? "" : "This field is required";
   };
 
   return (
     <Form
+      key={Math.random()}
+      initialValues={isEditing && initialValue}
       onSubmit={handleSubmit}
-      intitalValues = {initialValue}
       render={(formRenderProps) => (
         <FormElement
           style={{
@@ -45,4 +46,4 @@ const ConatctInfo = ({ handleSubmit, isEditing, initialValue }) => {
   );
 };
 
-export default ConatctInfo;
+export default ConatctForm;
