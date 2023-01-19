@@ -3,7 +3,7 @@ import { Form, Field, FormElement } from "@progress/kendo-react-form";
 import { Input } from "@progress/kendo-react-inputs";
 import { Button } from "@progress/kendo-react-buttons";
 
-const ConatctInfo = ({ handleSubmit, isEditing }) => {
+const ConatctInfo = ({ handleSubmit, isEditing, initialValue }) => {
   const requiredVaildator = (value) => {
     return value ? "" : "This field is required";
   };
@@ -11,6 +11,7 @@ const ConatctInfo = ({ handleSubmit, isEditing }) => {
   return (
     <Form
       onSubmit={handleSubmit}
+      intitalValues = {initialValue}
       render={(formRenderProps) => (
         <FormElement
           style={{

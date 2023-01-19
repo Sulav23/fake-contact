@@ -9,6 +9,7 @@ const App = () => {
   const [newData, setNewData] = useState("");
   const [editFormInput, setEditFormInput] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [initialValue, setIntitialValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -107,7 +108,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <ConatctInfo handleSubmit={handleSubmit} isEditing={isEditing} />
+      <ConatctInfo handleSubmit={handleSubmit} isEditing={isEditing} initialValue={isEditing && initialValue}/>
       {isLoading ? (
         <h1 style={{ textAlign: "center", marginTop: "50px" }}>Loading ...</h1>
       ) : contactList.length > 0 ? (
